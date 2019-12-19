@@ -1,10 +1,10 @@
 import env from "./constants/env";
-import middleware from '../shared/middleware';
+import middleware from './middleware';
 import routes from './routes';
-import applyMiddleware from "../shared/utils/applyMiddleware";
-import applyRoutes from "../shared/utils/applyRoutes";
+import applyMiddleware from "./utils/applyMiddleware";
+import applyRoutes from "./utils/applyRoutes";
 import app from "./app";
-import { connect } from "../shared/redis";
+import { connect } from "./redis";
 
 process.on("uncaughtException", e => {
   console.error('uncaughtException', e);
