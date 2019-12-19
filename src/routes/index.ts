@@ -1,9 +1,9 @@
 import home from './home';
-import subscription from './subscription';
+import events from './events';
 import login from "./login";
 
 export default [
   home,
-  subscription,
+  events,
   login
 ]
