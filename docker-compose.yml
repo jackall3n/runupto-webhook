@@ -11,9 +11,8 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - cache-network
+      - runupto-redis_cache-network
 
 networks:
-  cache-network:
-    name: cache-network
+  runupto-redis_cache-network:
     external: true
