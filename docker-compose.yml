@@ -9,7 +9,7 @@ services:
       PORT: 8000
       REDIS_URL: redis://run-up-redis:6379
     ports:
-      - "8000:8000"
+      - "80:8000"
     networks:
       - runupto-redis_cache-network
 
