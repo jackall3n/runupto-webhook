@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  run-up-api:
+    container_name: run-up-api
+    build: .
+    command: yarn start:callback
+    environment:
+      PORT: 7000
+      REDIS_URL: redis://run-up-redis:6379
+    ports:
+      - "80:7000"
+    depends_on:
+      - run-up-redis
+    networks:
+      - run-up-network
+    links:
+      - run-up-redis
+
+  run-up-callback-handler:
+    container_name: run-up-callback-handler
+    build: .
+    command: yarn start:callback
+    environment:
+      PORT: 8000
+      REDIS_URL: redis://run-up-redis:6379
+    ports:
+      - "80:8000"
+    depends_on:
+      - run-up-redis
+    networks:
+      - run-up-network
+    links:
+      - run-up-redis
+
+  run-up-redis:
+    image: redis
+    container_name: run-up-redis
+    ports:
+      - "6969:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - run-up-network
+
+networks:
+  run-up-network:
+    driver: bridge
+
+volumes:
+  redis-data:
