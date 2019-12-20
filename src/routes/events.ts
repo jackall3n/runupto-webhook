@@ -10,10 +10,7 @@ events.get('/queue', (req, res) => {
 
   try {
     redis.lrange(STRAVA_EVENTS_KEY, 0, -1, (e, events) => {
-
-      const updates = events.map((p: string) => JSON.parse(p)) as any[];
-
-      res.send(updates)
+      res.send(events)
     });
   } catch (e) {
     res.send(e.message);
@@ -33,7 +30,7 @@ events.get('/callback', (req, res) => {
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
 
-  console.log('subscription', { challenge, mode, token });
+  console.log('events', { challenge, mode, token });
 
   res.json({
     'hub.challenge': challenge
