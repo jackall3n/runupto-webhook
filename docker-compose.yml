@@ -6,13 +6,18 @@ services:
     build: .
     command: yarn start
     environment:
-      PORT: 8000
+      PORT: 80
       REDIS_URL: redis://run-up-redis:6379
-    ports:
-      - "80:8000"
+      VIRTUAL_HOST: webhook.zorp.co
+    expose:
+      - 80
     networks:
       - runupto-redis_cache-network
 
 networks:
+  default:
+    external:
+      name: nginx-proxy
   runupto-redis_cache-network:
     external: true
+
