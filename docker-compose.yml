@@ -13,9 +13,10 @@ services:
       - 80
     networks:
       - runupto-redis_cache-network
+      - nginx-proxy
 
 networks:
-  default:
+  nginx-proxy:
     external:
       name: nginx-proxy
   runupto-redis_cache-network:
