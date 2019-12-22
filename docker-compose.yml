@@ -12,12 +12,13 @@ services:
     expose:
       - 80
     networks:
-      - runupto-redis_cache-network
+      - cache-network
 
 networks:
   default:
     external:
       name: nginx-proxy
-  runupto-redis_cache-network:
+  cache-network:
     external: true
+      name: cache-network
 
