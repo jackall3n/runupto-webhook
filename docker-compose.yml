@@ -13,11 +13,12 @@ services:
       - 80
     networks:
       - cache-network
+      - nginx-proxy
 
 networks:
-  default:
-    external:
-      name: nginx-proxy
+  nginx-proxy:
+    external: true
+    name: nginx-proxy
   cache-network:
     external: true
     name: cache-network
