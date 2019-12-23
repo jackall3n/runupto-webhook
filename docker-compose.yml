@@ -3,6 +3,7 @@ version: '3.7'
 services:
   run-up-webhook:
     container_name: run-up-webhook
+    restart: always
     build: .
     command: yarn start
     environment:
@@ -15,12 +16,12 @@ services:
       - 80
     networks:
       - cache-network
-      - nginx-proxy
+      - proxy-network
 
 networks:
-  nginx-proxy:
+  proxy-network:
     external: true
-    name: nginx-proxy
+    name: proxy-network
   cache-network:
     external: true
     name: cache-network
