@@ -4,7 +4,7 @@ import routes from './routes';
 import applyMiddleware from "./utils/applyMiddleware";
 import applyRoutes from "./utils/applyRoutes";
 import app from "./app";
-import { connect } from "./redis";
+import { connect } from "../../runupto-shared/src/redis";
 
 process.on("uncaughtException", e => {
   console.error('uncaughtException', e);
