@@ -3,7 +3,7 @@ import { App } from "../app";
 
 const events = express.Router();
 
-const STRAVA_EVENTS_KEY = "strava:events";
+const STRAVA_EVENTS_KEY = "strava:events:queued";
 
 events.get('/queue', (req, res) => {
   const { redis } = req.app.locals as App['locals'];
@@ -20,7 +20,7 @@ events.get('/queue', (req, res) => {
 events.post('/callback', (req, res) => {
   const { redis } = req.app.locals as App['locals'];
 
-  redis.rpush(STRAVA_EVENTS_KEY, JSON.stringify(req.body), (error) => {
+  redis.lpush(STRAVA_EVENTS_KEY, JSON.stringify(req.body), (error) => {
     res.status(error !== null ? 500 : 200).send();
   });
 });
