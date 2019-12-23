@@ -9,6 +9,8 @@ services:
       PORT: 80
       REDIS_URL: redis://run-up-redis:6379
       VIRTUAL_HOST: webhook.zorp.co
+      LETSENCRYPT_HOST: webhook.zorp.co
+      LETSENCRYPT_EMAIL: hello@jackallen.me
     expose:
       - 80
     networks:
