@@ -8,4 +8,3 @@ COPY yarn.lock .
 RUN yarn
 
 COPY . .
-COPY ../shared ../shared
