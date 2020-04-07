@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  run-up-webhook:
+    container_name: run-up-webhook
+    restart: always
+    build: .
+    command: yarn start
+    environment:
+      PORT: 80
+      REDIS_URL: redis://run-up-redis:6379
+      VIRTUAL_HOST: webhook.zorp.co
+      LETSENCRYPT_HOST: webhook.zorp.co
+      LETSENCRYPT_EMAIL: hello@jackallen.me
+    expose:
+      - 80
+    networks:
+      - cache-network
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
+    name: proxy-network
+  cache-network:
+    external: true
+    name: cache-network
+
